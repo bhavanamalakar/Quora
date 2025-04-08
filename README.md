@@ -25,7 +25,7 @@ This is a simple **Quora-like web app** built using **Django** and **PostgreSQL*
 
 ## 🧑‍💻 Getting Started
 
-### 1. Clone the repository
+### Clone the repository
 ```bash
 git clone https://github.com/your-username/quora-clone.git
 cd quora-clone
