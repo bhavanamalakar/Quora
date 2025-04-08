@@ -1,11 +1,13 @@
+{% extends 'base.html' %}  {# Inherit base layout #}
+{% block title %}Post Question{% endblock %}  {# Set page title #}
 
-{% extends 'base.html' %}
-{% block title %}Post Question{% endblock %}
 {% block content %}
 <h2 class="mb-3">Post a Question</h2>
-<form method="post" class="card p-4 shadow">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+<form method="post" class="card p-4 shadow">  {# Form to post a question #}
+    {% csrf_token %}  {# Protect against CSRF attacks #}
+    {{ form.as_p }}  {# Render form fields with paragraph formatting #}
+    <button type="submit" class="btn btn-primary">Submit</button>  {# Submit button #}
 </form>
+
 {% endblock %}

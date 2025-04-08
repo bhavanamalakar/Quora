@@ -1,16 +1,25 @@
-{% extends 'base.html' %}
-{% block title %}Home{% endblock %}
+{% extends 'base.html' %}  {# Inherit from base layout #}
+{% block title %}Home{% endblock %}  {# Set page title #}
+
 {% block content %}
 <h2>Questions</h2>
+
 {% for q in questions %}
     <div class="card mb-3 shadow-sm">
         <div class="card-body">
+            <!-- Question title links to detailed view -->
             <h5><a href="{% url 'question_detail' q.id %}">{{ q.title }}</a></h5>
+
+            <!-- Show truncated body with first 20 words -->
             <p>{{ q.body|truncatewords:20 }}</p>
+
+            <!-- Show question author and post time -->
             <small class="text-muted">Posted by {{ q.user.username }} • {{ q.created_at }}</small>
         </div>
     </div>
 {% empty %}
-    <p>No questions found.</p>
+    <p>No questions found.</p>  {# Message when no questions are available #}
 {% endfor %}
+
 {% endblock %}
+

@@ -1,43 +1,46 @@
 {% extends 'base.html' %}
-{% block title %}{{ question.title }}{% endblock %}
+
+{% block title %}{{ question.title }}{% endblock %}  <!-- Set the title to the question's title -->
+
 {% block content %}
-<a href="{% url 'home' %}" class="btn btn-outline-dark btn-sm mb-2">← Back to Home</a>
+<a href="{% url 'home' %}" class="btn btn-outline-dark btn-sm mb-2">← Back to Home</a>  <!-- Link back to the home page -->
 
 <h2>{{ question.title }}</h2>
-<div style="white-space: pre-wrap;">{{ question.body }}</div>
-<small class="text-muted">Asked by {{ question.user.username }} on {{ question.created_at }}</small>
+<div style="white-space: pre-wrap;">{{ question.body }}</div>  <!-- Display question body, with proper formatting for line breaks -->
+<small class="text-muted">Asked by {{ question.user.username }} on {{ question.created_at }}</small>  <!-- Show question author and timestamp -->
 
 <hr>
 <h4 class="mt-4">Answers</h4>
+
 {% for ans in answers %}
     <div class="card mb-2">
         <div class="card-body">
-            <div style="white-space: pre-wrap;">{{ ans.body }}</div>
+            <div style="white-space: pre-wrap;">{{ ans.body }}</div>  <!-- Display answer content -->
 
-            
-            <small class="text-muted">By {{ ans.user.username }} • {{ ans.created_at }}</small><br>
+            <small class="text-muted">By {{ ans.user.username }} • {{ ans.created_at }}</small><br>  <!-- Show answer author and timestamp -->
 
             {% if question.user != request.user %}
-                <form method="post" action="{% url 'like_answer' ans.id %}">
+                <form method="post" action="{% url 'like_answer' ans.id %}">  <!-- Form to like/unlike the answer -->
                     {% csrf_token %}
                     <button class="btn btn-sm btn-outline-primary mt-2">
-                        {% if user in ans.likes.all %}Unlike{% else %}Like{% endif %} ({{ ans.total_likes }})
+                        {% if user in ans.likes.all %}Unlike{% else %}Like{% endif %} ({{ ans.total_likes }})  <!-- Display like/unlike button with like count -->
                     </button>
                 </form>
             {% endif %}
         </div>
     </div>
 {% empty %}
-    <p>No answers yet.</p>
+    <p>No answers yet.</p>  <!-- Message when there are no answers -->
 {% endfor %}
 <hr>
+
 {% if question.user != request.user %}
 <h4 class="mt-4">Your Answer</h4>
-<form method="post" class="card p-3 shadow">
+<form method="post" class="card p-3 shadow">  <!-- Form to post an answer if the question's author is not the logged-in user -->
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Post Answer</button>
+    {{ form.as_p }}  <!-- Display the answer form fields -->
+    <button type="submit" class="btn btn-success">Post Answer</button>  <!-- Button to submit the answer -->
 </form>
 {% endif %}
-{% endblock %}
 
+{% endblock %}
