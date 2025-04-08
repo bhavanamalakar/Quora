@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+*.db
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# VSCode and IDE configs
+.vscode/
+.idea/
+*.swp
+
+# MacOS
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+*.so
+
+# Secrets (optional, if you store them this way)
+.env
+.env.*
+
+# Migrations (optional — usually you DO want to include them)
+# Uncomment if you want to ignore migrations
+# **/migrations/*.py
+# **/migrations/*.pyc
