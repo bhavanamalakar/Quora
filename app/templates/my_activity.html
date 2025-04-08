@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}My Activity{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">My Activity</h2>
+
+<h4>📝 Questions You Posted</h4>
+{% for q in questions_posted %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <h5>{{ q.title }}</h5>
+            <div style="white-space: pre-wrap;">{{ q.body }}</div>
+            <small class="text-muted">Posted on {{ q.created_at }}</small>
+            <a class="btn btn-sm btn-outline-primary float-end" href="{% url 'question_detail' q.id %}">View</a>
+        </div>
+    </div>
+{% empty %}
+    <p>No questions posted yet.</p>
+{% endfor %}
+
+<hr>
+
+<h4>💬 Answers You Posted</h4>
+{% for a in answers_posted %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <h6>On: {{ a.question.title }}</h6>
+            <div style="white-space: pre-wrap;">{{ a.body }}</div>
+            <small class="text-muted">Answered on {{ a.created_at }}</small>
+            <a class="btn btn-sm btn-outline-info float-end" href="{% url 'question_detail' a.question.id %}">View Question</a>
+        </div>
+    </div>
+{% empty %}
+    <p>No answers posted yet.</p>
+{% endfor %}
+
+<hr>
+
+<h4>👍 Answers You Liked</h4>
+{% for l in answers_liked %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <h6>Answer by {{ l.user.username }} on: {{ l.question.title }}</h6>
+            <div style="white-space: pre-wrap;">{{ l.body }}</div>
+            <small class="text-muted">Liked answer from {{ l.created_at }}</small>
+            <a class="btn btn-sm btn-outline-secondary float-end" href="{% url 'question_detail' l.question.id %}">View</a>
+        </div>
+    </div>
+{% empty %}
+    <p>You haven’t liked any answers yet.</p>
+{% endfor %}
+{% endblock %}

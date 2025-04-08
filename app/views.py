@@ -77,3 +77,15 @@ def like_answer(request, answer_id):
         answer.likes.add(request.user)
     return redirect('question_detail', question_id=answer.question.id)
 
+@login_required
+def my_activity(request):
+    user = request.user
+    questions_posted = Question.objects.filter(user=user).order_by('-created_at')
+    answers_posted = Answer.objects.filter(user=user).order_by('-created_at')
+    answers_liked = Answer.objects.filter(likes=user).order_by('-created_at')
+
+    return render(request, 'my_activity.html', {
+        'questions_posted': questions_posted,
+        'answers_posted': answers_posted,
+        'answers_liked': answers_liked,
+    })

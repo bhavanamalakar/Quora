@@ -12,6 +12,7 @@
             {% if user.is_authenticated %}
                 <span class="text-white me-3">Welcome, {{ user.username }}</span>
                 <a class="btn btn-outline-light me-2" href="{% url 'post_question' %}">Post Question</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'my_activity' %}">My Activity</a>
                 <a class="btn btn-outline-warning" href="{% url 'logout' %}">Logout</a>
             {% else %}
                 <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Login</a>
