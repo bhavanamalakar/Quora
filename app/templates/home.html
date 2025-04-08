@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h2>Questions</h2>
+{% for q in questions %}
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <h5><a href="{% url 'question_detail' q.id %}">{{ q.title }}</a></h5>
+            <p>{{ q.body|truncatewords:20 }}</p>
+            <small class="text-muted">Posted by {{ q.user.username }} • {{ q.created_at }}</small>
+        </div>
+    </div>
+{% empty %}
+    <p>No questions found.</p>
+{% endfor %}
+{% endblock %}
