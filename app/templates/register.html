@@ -1,11 +1,44 @@
-
-{% extends 'base.html' %}
-{% block title %}Register{% endblock %}
+{% extends "base.html" %}
+{% load widget_tweaks %}
 {% block content %}
-<h2 class="mb-3">Register</h2>
-<form method="post" class="card p-4 shadow">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+<div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="col-md-6">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4">
+                <i class="bi bi-person-plus-fill me-2"></i> Create Your Account
+            </h2>
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label">{{ field.label }}</label>
+                        {{ field|add_class:"form-control" }}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary w-100 py-2 mt-2">
+                    <i class="bi bi-person-check me-1"></i> Register
+                </button>
+            </form>
+            <p class="text-center mt-3 mb-0">Already registered?
+                <a href="{% url 'login' %}">Log in here</a>
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+

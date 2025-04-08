@@ -30,8 +30,8 @@ This is a simple **Quora-like web app** built using **Django** and **PostgreSQL*
 git clone https://github.com/your-username/quora-clone.git
 cd quora-clone
 
-python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
+python -m venv env
+source env/bin/activate   # On Windows: env\Scripts\activate
 
 pip install -r requirements.txt
 

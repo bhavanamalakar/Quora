@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}{{ question.title }}{% endblock %}
 {% block content %}
+<a href="{% url 'home' %}" class="btn btn-outline-dark btn-sm mb-2">← Back to Home</a>
+
 <h2>{{ question.title }}</h2>
 <div style="white-space: pre-wrap;">{{ question.body }}</div>
 <small class="text-muted">Asked by {{ question.user.username }} on {{ question.created_at }}</small>
